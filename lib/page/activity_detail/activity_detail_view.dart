@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:town_pass/bean/activity.dart';
 import 'package:town_pass/gen/assets.gen.dart';
-import 'package:town_pass/gen/fonts.gen.dart';
 import 'package:town_pass/util/tp_app_bar.dart';
 import 'package:town_pass/util/tp_bottom_sheet.dart';
 import 'package:town_pass/util/tp_button.dart';
@@ -32,7 +31,8 @@ class ActivityDetailView extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
                     child: _ActivityDurationWidget(
                       startDate: activity.startDateTime,
                       endDate: activity.endDateTime,
@@ -63,7 +63,8 @@ class ActivityDetailView extends StatelessWidget {
                 TPButton.primary(
                   text: '網址連結',
                   onPressed: () async {
-                    await Get.toNamed(TPRoute.webView, arguments: activity.webUrl);
+                    await Get.toNamed(TPRoute.webView,
+                        arguments: activity.webUrl);
                   },
                 ),
               ],

@@ -15,7 +15,8 @@ import 'package:town_pass/util/tp_text.dart';
 class MosaicTileWidget extends StatelessWidget {
   const MosaicTileWidget({super.key});
 
-  MosaicTileService get service => Get.find<CityServiceViewController>().staticService.value;
+  MosaicTileService get service =>
+      Get.find<CityServiceViewController>().staticService.value;
 
   @override
   Widget build(BuildContext context) {

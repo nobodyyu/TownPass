@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 import 'package:town_pass/gen/assets.gen.dart';
+import 'package:town_pass/page/city_service/model/my_service_item_model.dart';
 import 'package:town_pass/page/city_service/model/my_service_model.dart';
 import 'package:town_pass/page/city_service/widget/pinned_service_widget.dart';
 import 'package:town_pass/page/city_service_edit/city_service_edit_view_controller.dart';
@@ -11,6 +9,9 @@ import 'package:town_pass/util/tp_button.dart';
 import 'package:town_pass/util/tp_colors.dart';
 import 'package:town_pass/util/tp_route.dart';
 import 'package:town_pass/util/tp_text.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 class CityServiceEditView extends GetView<CityServiceEditViewController> {
   const CityServiceEditView({super.key});
@@ -82,9 +83,9 @@ class CityServiceEditView extends GetView<CityServiceEditViewController> {
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
-                itemCount: controller.categoryMap.keys.length,
+                itemCount: controller.serviceCategory.length,
                 itemBuilder: (_, index) {
-                  final MyServiceCategory category = controller.categoryMap.keys.toList()[index];
+                  final MyServiceCategory category = controller.serviceCategory[index];
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -99,9 +100,9 @@ class CityServiceEditView extends GetView<CityServiceEditViewController> {
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: controller.categoryMap[category]?.length,
+                        itemCount: category.serviceList.length,
                         itemBuilder: (_, index) {
-                          final MyServiceItemId itemId = controller.categoryMap[category]![index];
+                          final MyServiceItemId itemId = category.serviceList[index];
                           return Obx(
                             () {
                               return GestureDetector(
@@ -116,13 +117,12 @@ class CityServiceEditView extends GetView<CityServiceEditViewController> {
                                           Fluttertoast.showToast(msg: '置頂服務已達上限(12個)');
                                         }
                                     }
-                                  } else {
-                                    if (itemId.item.destinationUrl.isNotEmpty) {
-                                      Get.toNamed(
-                                        TPRoute.webView,
-                                        arguments: itemId.item.destinationUrl,
-                                      );
-                                    }
+                                  }
+                                  if (itemId.item.destinationUrl.isNotEmpty) {
+                                    Get.toNamed(
+                                      TPRoute.webView,
+                                      arguments: itemId.item.destinationUrl,
+                                    );
                                   }
                                 },
                                 child: Padding(
