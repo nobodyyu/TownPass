@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:town_pass/gen/assets.gen.dart';
 import 'package:town_pass/page/city_service/widget/mosaic_tile_widget.dart';
 import 'package:town_pass/page/city_service/widget/pinned_service_widget.dart';
@@ -14,7 +15,8 @@ class CityServiceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String domain = "https://129e-211-23-28-236.ngrok-free.app";
+    String domain =
+        "https://3d38-2401-e180-8871-6a77-14c3-9bda-ca43-2dd1.ngrok-free.app";
 
     return Scaffold(
       backgroundColor: TPColors.white,
@@ -37,129 +39,165 @@ class CityServiceView extends StatelessWidget {
             onMoreTap: () => Get.toNamed(TPRoute.serviceEdit),
           ),
           const SizedBox(height: 30),
-          Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: TPColors.grayscale100)),
-              padding: const EdgeInsets.all(16),
-              child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () => Get.toNamed(
-                        TPRoute.webView,
-                        arguments: "$domain/labor",
-                      ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const TPText(
-                        "勞工權益健診",
-                        style: TPTextStyles.h2SemiBold,
-                        color: TPColors.primary500,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      CircleAvatar(
-                        radius: 28,
-                        backgroundColor: TPColors.white,
-                        child: Image.asset("assets/image/user_attributes.png"),
-                      ),
-                    ],
-                  ))),
-          const SizedBox(height: 10),
-          Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: TPColors.grayscale100)),
-              padding: const EdgeInsets.all(16),
-              child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () => Get.toNamed(
-                        TPRoute.webView,
-                        arguments: "$domain/hospital",
-                      ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const TPText(
-                        "醫院看診查詢",
-                        style: TPTextStyles.h2SemiBold,
-                        color: TPColors.primary500,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      CircleAvatar(
-                        radius: 28,
-                        backgroundColor: TPColors.white,
-                        child: Image.asset("assets/image/hospital.png"),
-                      ),
-                    ],
-                  ))),
-          const SizedBox(height: 10),
-          Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: TPColors.grayscale100)),
-              padding: const EdgeInsets.all(16),
-              child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () => Get.toNamed(
-                        TPRoute.webView,
-                        arguments: "$domain/lottery",
-                      ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const TPText(
-                        "抽動物園門票",
-                        style: TPTextStyles.h2SemiBold,
-                        color: TPColors.primary500,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      CircleAvatar(
-                        radius: 28,
-                        backgroundColor: TPColors.white,
-                        child: Image.asset("assets/image/poker.png"),
-                      ),
-                    ],
-                  ))),
-          const SizedBox(height: 10),
-          Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: TPColors.grayscale100)),
-              padding: const EdgeInsets.all(16),
-              child: GestureDetector(
+          Row(
+            children: [
+              Expanded(
+                  child: Column(children: [
+                GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => Get.toNamed(
+                          TPRoute.webView,
+                          arguments: "$domain/lottery",
+                        ),
+                    child: Container(
+                        margin: const EdgeInsets.only(left: 16),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: TPColors.grayscale100)),
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 18,
+                              backgroundColor: TPColors.white,
+                              child: Image.asset("assets/image/poker.png"),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            const TPText(
+                              "抽動物園門票",
+                              style: TPTextStyles.h3Regular,
+                              color: TPColors.primary500,
+                            ),
+                          ],
+                        ))),
+                const SizedBox(
+                  height: 12,
+                ),
+                GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => Get.toNamed(
+                          TPRoute.webView,
+                          arguments: "$domain/labor",
+                        ),
+                    child: Container(
+                        margin: const EdgeInsets.only(left: 16),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: TPColors.grayscale100)),
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 18,
+                              backgroundColor: TPColors.white,
+                              child: Image.asset(
+                                  "assets/image/user_attributes.png"),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            const TPText(
+                              "勞工權益健診",
+                              style: TPTextStyles.h3Regular,
+                              color: TPColors.primary500,
+                            ),
+                          ],
+                        ))),
+                const SizedBox(
+                  height: 12,
+                ),
+                GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => Get.toNamed(
+                          TPRoute.webView,
+                          arguments: "$domain/hospital",
+                        ),
+                    child: Container(
+                        margin: const EdgeInsets.only(left: 16),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: TPColors.grayscale100)),
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 18,
+                              backgroundColor: TPColors.white,
+                              child: Image.asset("assets/image/hospital.png"),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            const TPText(
+                              "醫院看診查詢",
+                              style: TPTextStyles.h3Regular,
+                              color: TPColors.primary500,
+                            ),
+                          ],
+                        )))
+              ])),
+              GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () => Get.toNamed(
                         TPRoute.webView,
                         arguments: "$domain/lunar",
                       ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const TPText(
-                        "農民曆",
-                        style: TPTextStyles.h2SemiBold,
+                  child: Container(
+                    width: (MediaQuery.of(context).size.width * 1 / 3),
+                    margin: const EdgeInsets.only(right: 16, left: 9),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
                         color: TPColors.primary500,
-                      ),
+                        border: Border.all(color: TPColors.primary500)),
+                    padding: const EdgeInsets.all(10),
+                    child: Column(children: [
+                      Row(children: [
+                        Container(
+                          width: 24,
+                          height: 24,
+                          decoration: BoxDecoration(
+                              color: TPColors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: TPColors.grayscale100)),
+                          child: Image.asset("assets/image/calendar.png",
+                              width: 24, height: 24),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        const TPText(
+                          "農民曆",
+                          style: TPTextStyles.h3SemiBold,
+                          color: TPColors.white,
+                        ),
+                      ]),
                       const SizedBox(
-                        width: 8,
+                        height: 12,
                       ),
-                      CircleAvatar(
-                        radius: 28,
-                        backgroundColor: TPColors.white,
-                        child: Image.asset("assets/image/calendar.png"),
+                      TPText(
+                        "${DateTime.now().year} 年\n${DateTime.now().month} 月",
+                        style: TPTextStyles.h3SemiBold,
+                        color: TPColors.white,
+                        textAlign: TextAlign.right,
                       ),
-                    ],
-                  ))),
+                      TPText(
+                        "${DateTime.now().day} ",
+                        style: TPTextStyles.h1SemiBold,
+                        color: TPColors.white,
+                        textAlign: TextAlign.right,
+                      ),
+                      const TPText(
+                        "甲辰年\n8月 初六",
+                        style: TPTextStyles.h3Regular,
+                        color: TPColors.white,
+                        textAlign: TextAlign.right,
+                      )
+                    ]),
+                  ))
+            ],
+          ),
           const SizedBox(height: 20),
           const MosaicTileWidget(),
           const SizedBox(height: 20),
